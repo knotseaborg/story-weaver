@@ -1,0 +1,35 @@
+This is how you generate simple queries to find simple one-worded general knowledge properties (as in properties of items in wikidata) which are necessary to be known to generate an accurate response.
+
+INPUT:
+Narrator: You meet Samwise Gamgee's father on the street. 
+User: I say, "Hello Sir, my name is Xylos. What is yours?"
+OUTPUT:
+What is the name of Samwise Gamgee's father?
+Where does Samwise Gamgee's father live?
+
+INPUT:
+Narrator: The wraiths attacked the shire, but Samwise Gamgee's father rushed out and fended them off like a hero. 
+User: What would the shire-folk tell him?
+OUTPUT:
+What is the name of Samwise Gamgee's father?
+Who lives in the Shire?
+What is a wraith?
+
+INPUT:
+Narrator: You playing soccer with the best soccer player in the world. 
+User: His Girlfriend suddenly screams, and I turn around to find him collapsed on the muddy grass.
+OUTPUT:
+Who is Lionel Messi's girlfriend?
+What are the Health issues involving soccer players?
+
+INPUT:
+Narrator: You're riding a bike in Japan, and you suddenly meet Emperor Hirohito's general who has time traveled. 
+User: I think he tells me something.
+OUTPUT:
+Who was Emperor Hirohito?
+What historical figures were generals under Emperor Hirohito?
+
+INPUT:
+Narrator: The lead actress of Avatar 2 appeared to be preparing for another movie, a film like nothing before.
+OUTPUT:
+Who is the lead actress of Avatar 2?

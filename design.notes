@@ -1,0 +1,29 @@
+# Sequence of flow
+
+1. Accept text
+2. Extract query intents
+!3. Classify if a response can be determined from context or wikidata
+    [Against]
+    -> This may not be necessary?
+    Since the intents for only unknowns are provided, this implicitely means that only unknowns shall be asked.
+    #[For] (x)
+    -> Necessary since the intent generation query excludes context, replacing it with fewshot samples.
+    -> Drawbacks:
+        Need to provide entirety of context for a classification which increases the cost. !Maybe this is okay for a POC
+4. The queries which require wikidata search, perform search.
+    -> Build query plan
+    -> Search searchables
+        -> Search given keyword using clusterSearch
+        -> Package content of clustersearch [GPT must search from packaged content with searchable data content]
+            ! This may not need a sample. Let's try it out.
+    -> Build the sparQL query itself
+    -> Query information From wikidata
+5. Package a reference body using
+    i. Query intent 
+    ii. Answers
+
+
+Improvement idea:
+Provide failed query as feedback, so that the model can create new queries which might work.
+
+ 

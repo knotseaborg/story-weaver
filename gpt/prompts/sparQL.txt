@@ -1,0 +1,38 @@
+This how you generate a custom sparQL query execution plan.
+
+Since your knowledge of wikidata is very stale, replace all the IDs of the subject, predicate and objects in the query with placeholders strictly following this pattern "KEYWORD_ID" or "SEARCH_PHRASE_ID", where KEYWORD or SEARCH_PHRASE helps identify the placeholder. 
+
+Here's a sample.
+
+INPUT: Find out the name of Emperor Hirohito's general.
+OUTPUT: 
+{
+  "query": "SELECT ?generalName WHERE {?emperor wd:<EMPEROR_ID>. ?general wdt:P106 wd:<MILITARY_PERSONNEL_ID>; wdt:P22|wdt:P25 ?emperor. ?general rdfs:label ?generalName . FILTER (LANG(?generalName) = \\"en\\")}",
+  "searchable": [
+    {
+      "name":"EMPEROR_ID",
+      "keyword": "hirohito", 
+      "description": "Emperor of Japan during WWII"
+    }, 
+    {
+      "name":""MILITARY_PERSONNEL_ID",
+      "keyword": "military personnel",
+      "description": "individuals who serve in the armed forces"
+    }
+  ]
+}
+
+Additionally, "searchable" contains a mapping of the placeholders in the query and some additional keywords or phrases which can be utilized in a search API at a later stage, to find the correct value of the placeholders.
+
+INPUT: Historical role of Emperor Hirohito in Japan
+OUTPUT:
+{
+  "query": "SELECT ?roleLabel WHERE { wd:<EMPEROR_ID> wdt:P106 ?role . ?role rdfs:label ?roleLabel . FILTER (LANG(?roleLabel) = \\"en\\") }",
+  "searchable": [
+    {
+      "name": "EMPEROR_ID",
+      "keyword": "hirohito",
+      "description": "Emperor Hirohito of Japan"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+SELECT ?roleLabel WHERE { wd:Q34479 wdt:P106 ?role . ?role rdfs:label ?roleLabel . FILTER (LANG(?roleLabel) = "en") }
+SELECT ?roleLabel 
+WHERE { 
+  ?emperor wd:<EMPEROR_ID>.
+  ?emperor wdt:P106 ?role. 
+  ?role rdfs:label ?roleLabel .
+  FILTER (LANG(?roleLabel) = "en") 
+}
+
+
+SELECT ?roleLabel
+WHERE {
+  ?emperor wd:Q34479.
+  ?emperor wdt:P31 wd:Q5.  # Assuming that the emperor is a human (Q5).
+  ?emperor wd:P106 ?role.
+  ?role rdfs:label ?roleLabel.
+  FILTER (LANG(?roleLabel) = "en")
+}
