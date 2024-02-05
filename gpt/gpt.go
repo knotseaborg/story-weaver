@@ -16,22 +16,6 @@ const (
 	GPT_35 = "gpt-3.5-turbo"
 )
 
-func generatePrompt(keyword, description, content string) string {
-	prompt := `Here is a keyword and the description of an entity. 
-keyword: <KEYWORD>, description: <DESCRIPTION>
-
-Now here is a list of entities, which consists of ID, label and description.
-From this list, return the ID whose description is most satisfactory
-
-<CONTENT>
-`
-	prompt = strings.Replace(prompt, "<KEYWORD>", keyword, 1)
-	prompt = strings.Replace(prompt, "<DESCRIPTION>", description, 1)
-	prompt = strings.Replace(prompt, "<CONTENT>", content, 1)
-
-	return prompt
-}
-
 func GenerateQueryPlan(queryIntent, reference string) *QueryPlan {
 	/*
 		Generate the query plan using intent.
@@ -56,11 +40,11 @@ func GenerateQueryPlan(queryIntent, reference string) *QueryPlan {
 	return &plan
 }
 
-func IsAnswerableFromContext(queryIntent, context string) bool {
+func IsAnswerableFromHistory(queryIntent, context string) bool {
 	/*
 		Determine if the query intent can be answered from the context itself.
 	*/
-	prompt := fmt.Sprintf("Reference:\n%s\nCan you guess an answer this question?\n%sRespond with a \"YES\" or \"NO\" and then justify your answer.\n", context, queryIntent)
+	prompt := fmt.Sprintf("Reference:\n%s\nCan you guess an answer this question?\n%sOnly respond with a \"YES\" or \"NO\" and then justify your answer.\n", context, queryIntent)
 	prompt = common.CleanForJSON(prompt)
 	resp, err := Completion(prompt, GPT_35)
 	if err != nil {
@@ -95,8 +79,6 @@ func GenerateQueryIntents(text string) ([]string, error) {
 }
 
 func Completion(text string, model string) (string, error) {
-	// Request payload as a JSON string
-	//context = "Hello!\\nThis is a test\\n"
 	payload := []byte(fmt.Sprintf(`{
 	"model": "%s",
 	"temperature": 0.3,

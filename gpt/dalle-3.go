@@ -11,14 +11,18 @@ import (
 	"github.com/knotseaborg/wikiSearchServer/common"
 )
 
+const (
+	DALLE_E = "dall-e-3"
+)
+
 func GenerateImage(prompt string) (string, error) {
 	url := os.Getenv("DALL_E_URL")
 	payload := []byte(fmt.Sprintf(`{
-		"model":"dall-e-3",
+		"model":"%s",
 		"prompt":"%s",
 		"n":1,
 		"size":"%s"
-	}`, prompt, os.Getenv("IMG_SIZE")))
+	}`, DALLE_E, prompt, os.Getenv("IMG_SIZE")))
 	byteContent, err := common.RequestPOST(url, payload)
 	if err != nil {
 		log.Printf("Payload used: %s", string(payload))

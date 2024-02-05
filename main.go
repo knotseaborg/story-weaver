@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/joho/godotenv"
-	"github.com/knotseaborg/wikiSearchServer/controller"
+	"github.com/knotseaborg/wikiSearchServer/weaver"
 )
 
 func main() {
@@ -10,5 +10,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	controller.Run()
+	weaver.Run()
 }

@@ -25,5 +25,5 @@
 
 Improvement idea:
 Provide failed query as feedback, so that the model can create new queries which might work.
-
- 
+Limit context window for image prompt to GPT.
+Make the code more object oriented

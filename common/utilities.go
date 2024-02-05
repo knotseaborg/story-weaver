@@ -1,6 +1,7 @@
 package common
 
 import (
+	"bufio"
 	"bytes"
 	"fmt"
 	"io"
@@ -81,5 +82,22 @@ func CleanForJSON(text string) string {
 	// Fix json respresentation of soon-to-be payload
 	text = strings.ReplaceAll(text, "\n", "\\n")
 	text = strings.ReplaceAll(text, "\"", "\\\"")
+	return text
+}
+
+func ReadInput(reader *bufio.Reader) string {
+	// Read a line of text including spaces
+	text, err := reader.ReadString('\n')
+	if err != nil {
+		fmt.Println("Error reading input:", err)
+		return ""
+	}
+	return text
+}
+
+func PruneText(text string, limit int) string {
+	if len(text) > limit {
+		return text[len(text)-limit:]
+	}
 	return text
 }
