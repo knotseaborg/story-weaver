@@ -10,5 +10,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	weaver.Run()
+	weaver.Run("One of the lead actresses of Avatar 2 appeared to be preparing for another movie.")
 }
