@@ -107,7 +107,7 @@ func GenerateQueryIntents(text string) ([]string, error) {
 		log.Fatal("Error building query", err)
 	}
 	intents := []string{}
-	for _, intent := range strings.Split(resp, "\n") {
+	for _, intent := range strings.Split(resp, "\n")[1:] { // The first item in this list is the word "OUTPUT:"
 		intent = strings.Trim(intent, " \n")
 		if len(intent) > 0 {
 			intents = append(intents, intent)

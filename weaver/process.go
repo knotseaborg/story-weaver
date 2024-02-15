@@ -148,7 +148,7 @@ func generateReference(queryIntents []string, context string) string {
 		} else {
 			log.Println("This intent is not answerable from the context")
 		}
-		resp := resolveIntent(queryIntent, reference.String())
+		resp := resolveIntent(queryIntent, reference.String(), 3)
 		if len(resp) == 0 {
 			log.Println("Reference not found")
 		} else {
@@ -159,7 +159,7 @@ func generateReference(queryIntents []string, context string) string {
 	return reference.String()
 }
 
-func resolveIntent(queryIntent, reference string) string {
+func resolveIntent(queryIntent, reference string, maxTries int) string {
 	/*
 		resolveIntent() resolves the query intent into a response by executing a query plan.
 
@@ -176,6 +176,9 @@ func resolveIntent(queryIntent, reference string) string {
 		resolvedResponse := resolveIntent(queryIntent, reference)
 		fmt.Println("Resolved response:", resolvedResponse)
 	*/
+	if maxTries == 0 {
+		return ""
+	}
 	response := strings.Builder{}
 	queryPlan := gpt.GenerateQueryPlan(queryIntent, reference)
 	fmt.Println("Query plan generated:", queryPlan)
@@ -190,6 +193,13 @@ func resolveIntent(queryIntent, reference string) string {
 		for v := range binding {
 			response.WriteString(binding[v].Value + ", ")
 		}
+	}
+	if response.Len() == 0 {
+		reference := reference +
+			fmt.Sprintf("\n[Please Try again. Your previous query and`%s` returned no response from Wikidata. Please rebuild a query plan with different structure]",
+				queryPlan.Query,
+			)
+		return resolveIntent(queryIntent, reference, maxTries-1)
 	}
 	return response.String()
 }

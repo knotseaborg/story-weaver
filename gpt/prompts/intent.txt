@@ -9,22 +9,21 @@ Where does Samwise Gamgee's father live?
 
 INPUT:
 Narrator: The wraiths attacked the shire, but Samwise Gamgee's father rushed out and fended them off like a hero. 
-User: What would the shire-folk tell him?
+User: I stand back in fear along with the other shire-folk, wondering if our hero is fine after the bloody fight.
 OUTPUT:
+What is a wraith?
 What is the name of Samwise Gamgee's father?
 Who lives in the Shire?
-What is a wraith?
 
 INPUT:
-Narrator: You playing soccer with the best soccer player in the world. 
-User: His Girlfriend suddenly screams, and I turn around to find him collapsed on the muddy grass.
+Narrator: You are playing a game of soccer with a young player Evan Ferguson. He seems extremely skilled, and beats you with ease. 
+User: I huff and puff, trying to keep up with him. "Whoa! You're really good, kid. What are you? A professional soccer player?"
 OUTPUT:
-Who is Lionel Messi's girlfriend?
-What are the Health issues involving soccer players?
+Who is Evan Ferguson.
 
 INPUT:
-Narrator: You're riding a bike in Japan, and you suddenly meet Emperor Hirohito's general who has time traveled. 
-User: I think he tells me something.
+Narrator: You're riding a bike in Japan, and you suddenly meet Emperor Hirohito's general who has time traveled into the future. 
+User: I fall from my bicycle, surprised at the man in the military uniform appearing in the middle of the road. "Ah! Who the you? Where did you come from?"
 OUTPUT:
 Who was Emperor Hirohito?
 What historical figures were generals under Emperor Hirohito?
